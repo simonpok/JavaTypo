@@ -1,11 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Counter extends JFrame {
+public class Counter extends JPanel {
     private JLabel countdownLabel;
 
     public Counter(){
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
         countdownLabel = new JLabel("60");
@@ -13,9 +12,7 @@ public class Counter extends JFrame {
         countdownLabel.setHorizontalAlignment((SwingConstants.CENTER));
         add(countdownLabel, BorderLayout.NORTH);
 
-        pack();
-        setLocationRelativeTo(null);
-        setVisible(true);
+
 
         startCountdown();
     }
