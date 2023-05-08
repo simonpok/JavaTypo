@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.text.DecimalFormat;
 import java.util.Random;
 
 public class RandomWords extends JPanel {
@@ -14,13 +15,12 @@ public class RandomWords extends JPanel {
     private Difficulty difficulty;
     public int wordCount;
     public int wrongCount;
-    public double accuracy;
+    public float accuracy;
     public JButton  startButton;
 
     public RandomWords(Counter countdown) {
 
         this.countdown = countdown;
-
         setLayout(new BorderLayout());
 
         wordCountLabel = new JLabel("WPM: 0     Accuracy: 100%");
@@ -103,10 +103,14 @@ public class RandomWords extends JPanel {
         public WordKeyListener(RandomWords randomWords) {
             this.randomWords = randomWords;
         }
+
+        int totalPressed = 0;
+        int correctPressed = 0;
         @Override
         public void keyTyped(KeyEvent e) {
-
+            totalPressed++;
             if (e.getKeyChar() == wordField.getText().charAt(0)) {
+                correctPressed++;
                 wordField.setForeground(Color.black);
                 wordField.setText(wordField.getText().substring(1));
                 if (wordField.getText().isEmpty()) {
@@ -126,10 +130,14 @@ public class RandomWords extends JPanel {
             }
 
             //ACCURACY CALCULATION
+            DecimalFormat df = new DecimalFormat("#.##");
             int correctCount = wordCount - wrongCount;
-            accuracy = ((double) correctCount /wordCount)* 100;
+//            accuracy = ((double) correctCount /wordCount)* 100;
+            accuracy = ((float) correctPressed / totalPressed) * 100;
+            String formattedAccuracy = df.format(accuracy);
 //            wordCountLabel.setText("WPM: " + wordCount + "Accuracy: "+ accuracy +"%");
-            wordCountLabel.setText("WPM: " + wordCount + "     Accuracy: " + (accuracy < 0 ? 0 : String.format("%.0f", accuracy)) + "%");
+//            wordCountLabel.setText("WPM: " + wordCount + "     Accuracy: " + (accuracy < 0 ? 0 : String.format("%.0f", accuracy)) + "%");
+            wordCountLabel.setText("WPM: " + wordCount + "     Accuracy: " + formattedAccuracy + "%");
 
         }
     }

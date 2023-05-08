@@ -9,8 +9,6 @@ public class TypoGame extends JFrame {
         setSize(400,600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setResizable(true);
-        setVisible(true);
 
 
         //GAME TIMER
@@ -20,6 +18,9 @@ public class TypoGame extends JFrame {
         add(countdown, BorderLayout.NORTH);
         add(randomWords, BorderLayout.CENTER);
 
+
+        setResizable(true);
+        setVisible(true);
 
     }
 }
