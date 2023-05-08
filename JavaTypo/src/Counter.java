@@ -2,19 +2,16 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Counter extends JPanel {
-    private static final int COUNTDOWN_SECONDS = 60;
+    private static final int DEFAULT_COUNTDOWN_SECONDS = 60;
     private JLabel countdownLabel;
     private int countdown;
     private Timer timer;
-    private boolean running = false;
     private int wordCount;
-    private JButton startButton;
-    private RandomWords randomWords;
     public Counter(){
 
         setLayout(new BorderLayout());
 
-        countdownLabel = new JLabel(Integer.toString(COUNTDOWN_SECONDS));
+        countdownLabel = new JLabel(Integer.toString(DEFAULT_COUNTDOWN_SECONDS));
         Font countdownFont = new Font("Courier", Font.BOLD, 50);
         countdownLabel.setFont(countdownFont);
         countdownLabel.setForeground(Color.black);
@@ -22,7 +19,7 @@ public class Counter extends JPanel {
         add(countdownLabel, BorderLayout.NORTH);
     }
     public void start(){
-            countdown = 60;
+            countdown = DEFAULT_COUNTDOWN_SECONDS;
             countdownLabel.setText(Integer.toString(countdown));
 
             timer = new Timer(1000, e -> {  //150
