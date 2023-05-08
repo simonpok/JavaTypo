@@ -22,10 +22,16 @@ public class RandomWords extends JPanel {
         setLayout(new BorderLayout());
 
         wordCountLabel = new JLabel("WPM: 0");
+        Font labelFont = new Font("Arial", Font.BOLD, 15);
+        wordCountLabel.setFont(labelFont);
+        wordCountLabel.setHorizontalAlignment((SwingConstants.CENTER));
         add(wordCountLabel, BorderLayout.NORTH);
 
         wordField = new JTextField();
         wordField.setEditable(false);
+        Font wordFieldFont = new Font("Arial", Font.PLAIN, 30);
+        wordField.setFont(wordFieldFont);
+        wordField.setForeground(Color.black);
         wordField.setHorizontalAlignment(SwingConstants.CENTER);
         add(wordField, BorderLayout.CENTER);
 
@@ -107,6 +113,7 @@ public class RandomWords extends JPanel {
         public void keyTyped(KeyEvent e) {
 
             if (e.getKeyChar() == wordField.getText().charAt(0)) {
+                wordField.setForeground(Color.black);
                 wordField.setText(wordField.getText().substring(1));
                 if (wordField.getText().isEmpty()) {
                     generateWord();
@@ -121,6 +128,8 @@ public class RandomWords extends JPanel {
                     Difficulty difficulty = Difficulty.valueOf(difficultyComboBox.getSelectedItem().toString()); //Value need to be change to String
                     randomWords.setDifficulty(difficulty);
                 }
+            } else {
+                wordField.setForeground(Color.red);
             }
         }
     }
