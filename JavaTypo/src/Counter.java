@@ -14,7 +14,9 @@ public class Counter extends JPanel {
         setLayout(new BorderLayout());
 
         countdownLabel = new JLabel("60");
-        countdownLabel.setFont(new Font("Arial", Font.BOLD, 36));
+        Font countdownFont = new Font("Courier", Font.BOLD, 50);
+        countdownLabel.setFont(countdownFont);
+        countdownLabel.setForeground(Color.black);
         countdownLabel.setHorizontalAlignment((SwingConstants.CENTER));
         add(countdownLabel, BorderLayout.NORTH);
 
