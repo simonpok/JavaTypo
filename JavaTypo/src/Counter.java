@@ -50,6 +50,7 @@ public class Counter extends JPanel {
     }
     public void reset() {
         countdownLabel.setText("60");
+
         start();
     }
     public void setWordCount(int count) {
