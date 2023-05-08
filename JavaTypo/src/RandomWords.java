@@ -7,12 +7,14 @@ import java.awt.event.KeyEvent;
 import java.util.Random;
 
 public class RandomWords extends JPanel {
-    private final JLabel wordCountLabel;
+    public final JLabel wordCountLabel;
     private final JTextField wordField;
     private final Counter countdown;
     public JComboBox difficultyComboBox;
     private Difficulty difficulty;
-    private int wordCount;
+    public int wordCount;
+    public int wrongCount;
+    public double accuracy;
     public JButton  startButton;
 
     public RandomWords(Counter countdown) {
@@ -21,9 +23,8 @@ public class RandomWords extends JPanel {
 
         setLayout(new BorderLayout());
 
-        wordCountLabel = new JLabel("WPM: 0");
+        wordCountLabel = new JLabel("WPM: 0     Accuracy: 100%");
         Font labelFont = new Font("Arial", Font.BOLD, 15);
-        wordCountLabel.setFont(labelFont);
         wordCountLabel.setHorizontalAlignment((SwingConstants.CENTER));
         add(wordCountLabel, BorderLayout.NORTH);
 
@@ -49,7 +50,7 @@ public class RandomWords extends JPanel {
         wordField.setFont(new Font("Arial", Font.BOLD, 24));
 
 
-
+        //START BUTTON
         startButton = new JButton("Start");
         startButton.setBounds(20, 20, 100, 25);
         add(startButton, BorderLayout.WEST);
@@ -61,7 +62,6 @@ public class RandomWords extends JPanel {
                 difficultyComboBox.disable();
                 countdown.start();
                 generateWord();
-
             }
         });
 
@@ -94,15 +94,9 @@ public class RandomWords extends JPanel {
         }
         Random random = new Random();
         int index = random.nextInt(words.length);
-
         wordField.setText(words[index]);
 
     }
-
-    public int getWordCount(){
-        return wordCount;
-    }
-
     private class WordKeyListener extends KeyAdapter {
         private RandomWords randomWords;
 
@@ -120,17 +114,23 @@ public class RandomWords extends JPanel {
                     wordCount++;
 
                     // Update word count label
-                    wordCountLabel.setText("WPM: " + wordCount);
                     countdown.setWordCount(wordCount);
 
                     // Set difficulty
-
                     Difficulty difficulty = Difficulty.valueOf(difficultyComboBox.getSelectedItem().toString()); //Value need to be change to String
                     randomWords.setDifficulty(difficulty);
                 }
             } else {
                 wordField.setForeground(Color.red);
+                wrongCount++;
             }
+
+            //ACCURACY CALCULATION
+            int correctCount = wordCount - wrongCount;
+            accuracy = ((double) correctCount /wordCount)* 100;
+//            wordCountLabel.setText("WPM: " + wordCount + "Accuracy: "+ accuracy +"%");
+            wordCountLabel.setText("WPM: " + wordCount + "     Accuracy: " + (accuracy < 0 ? 0 : String.format("%.0f", accuracy)) + "%");
+
         }
     }
 }
