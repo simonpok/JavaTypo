@@ -1,16 +1,19 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
 public class RandomWords extends JPanel {
-    private JLabel wordCountLabel;
-    private JTextField wordField;
-    private Counter countdown;
-    private int wordCount;
+    private final JLabel wordCountLabel;
+    private final JTextField wordField;
+    private final Counter countdown;
+    public JComboBox difficultyComboBox;
     private Difficulty difficulty;
-    private JComboBox difficultyComboBox;
+    private int wordCount;
+    public JButton  startButton;
 
     public RandomWords(Counter countdown) {
 
@@ -32,11 +35,30 @@ public class RandomWords extends JPanel {
         difficultyComboBox.addItem("Hard");
         add(difficultyComboBox, BorderLayout.SOUTH);
 
+        //Default value of Level
         difficulty = Difficulty.Easy;
 
-        generateWord();
         wordField.requestFocusInWindow();
         wordField.addKeyListener(new WordKeyListener(this));
+        wordField.setFont(new Font("Arial", Font.BOLD, 24));
+
+
+
+        startButton = new JButton("Start");
+        startButton.setBounds(20, 20, 100, 25);
+        add(startButton, BorderLayout.WEST);
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                startButton.setVisible(false);
+                // Disable the difficulty combo box
+                difficultyComboBox.disable();
+                countdown.start();
+                generateWord();
+
+            }
+        });
+
     }
     public enum Difficulty {
         Easy,
@@ -66,6 +88,7 @@ public class RandomWords extends JPanel {
         }
         Random random = new Random();
         int index = random.nextInt(words.length);
+
         wordField.setText(words[index]);
 
     }
@@ -82,6 +105,7 @@ public class RandomWords extends JPanel {
         }
         @Override
         public void keyTyped(KeyEvent e) {
+
             if (e.getKeyChar() == wordField.getText().charAt(0)) {
                 wordField.setText(wordField.getText().substring(1));
                 if (wordField.getText().isEmpty()) {
@@ -93,9 +117,8 @@ public class RandomWords extends JPanel {
                     countdown.setWordCount(wordCount);
 
                     // Set difficulty
-//                    Difficulty difficulty = (Difficulty) difficultyComboBox.getSelectedItem(); //Value need to be change to String
-//                    this.randomWords.setDifficulty(difficulty);
-                    Difficulty difficulty = Difficulty.valueOf(difficultyComboBox.getSelectedItem().toString());
+
+                    Difficulty difficulty = Difficulty.valueOf(difficultyComboBox.getSelectedItem().toString()); //Value need to be change to String
                     randomWords.setDifficulty(difficulty);
                 }
             }
