@@ -2,25 +2,25 @@ import javax.swing.*;
 import java.awt.*;
 
 public class TypoGame extends JFrame {
-    private Counter countdown;
-    private RandomWords randomWords;
+    private Counter countdown; //GameTimerPanel
+    private RandomWords randomWords; //WordGamePanel
     public TypoGame(){
         super("Java Typo");
-        setSize(400,600);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 
         //GAME TIMER
         countdown = new Counter();
         randomWords = new RandomWords(countdown);
-
         add(countdown, BorderLayout.NORTH);
         add(randomWords, BorderLayout.CENTER);
 
 
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(true);
+        pack();
+        setLocationRelativeTo(null);
         setVisible(true);
+        ImageIcon image = new ImageIcon("graphics/JTLogo.png");
+        setSize(400,600);
 
     }
 }
