@@ -22,7 +22,7 @@ public class Counter extends JPanel {
             countdown = DEFAULT_COUNTDOWN_SECONDS;
             countdownLabel.setText(Integer.toString(countdown));
 
-            timer = new Timer(1000, e -> {  //150
+            timer = new Timer(100, e -> {  //150
                 int countdown = Integer.parseInt(countdownLabel.getText());
                 countdown--;
                 countdownLabel.setText(Integer.toString(countdown));
@@ -36,7 +36,7 @@ public class Counter extends JPanel {
     public void stop() {
         RandomWords randomWords = new RandomWords(this);
         timer.stop();
-        int result = JOptionPane.showConfirmDialog(this, "Game over! WPM: " + wordCount + ". Would you like to play again?", "Game over", JOptionPane.YES_NO_OPTION);
+        int result = JOptionPane.showConfirmDialog(null, "Game over! WPM: " + wordCount + ". Would you like to play again?", "Game over", JOptionPane.YES_NO_OPTION);
         if (result == JOptionPane.YES_OPTION) {
             reset();
             randomWords.difficultyComboBox.setEnabled(true);
@@ -47,7 +47,6 @@ public class Counter extends JPanel {
     }
     public void reset() {
         countdownLabel.setText("60");
-
         start();
     }
     public void setWordCount(int count) {
