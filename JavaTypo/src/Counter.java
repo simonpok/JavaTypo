@@ -44,6 +44,7 @@ public class Counter extends JPanel {
     public void stop() {
         timer.stop();
         int result = JOptionPane.showConfirmDialog(this, "Game over! WPM: " + wordCount + " Accuracy: " + (accuracyCount < 0 ? 0 : String.format("%.0f", accuracyCount)) + "%. Would you like to play again?", "Game over", JOptionPane.YES_NO_OPTION);
+
         if (result == JOptionPane.YES_OPTION) {
             reset();
 
@@ -52,9 +53,9 @@ public class Counter extends JPanel {
         }
     }
     public void reset() {
-
         countdownLabel.setText("60");
         randomWords.startButton.setVisible(true);
+
         start();
     }
 
