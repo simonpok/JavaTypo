@@ -55,7 +55,7 @@ public class SplashScreen {
                 if (count == 4) {
                     ((Timer) e.getSource()).stop();
                     frame.dispose();
-                    new TypoGame();
+                    new TypoGame().setLocationRelativeTo(null);
                 }
                 count++;
             }).start();

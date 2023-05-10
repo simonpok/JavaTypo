@@ -15,9 +15,8 @@ public class TypoGame extends JFrame {
 
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setResizable(true);
+        setResizable(false);
         pack();
-        setLocationRelativeTo(null);
         setVisible(true);
         ImageIcon image = new ImageIcon("graphics/JTLogo.png");
         setSize(400,600);
