@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.text.DecimalFormat;
 import java.util.Random;
 
 public class RandomWords extends JPanel {
@@ -15,7 +14,7 @@ public class RandomWords extends JPanel {
     private Difficulty difficulty;
     public int wordCount;
     public int wrongCount;
-    public float accuracy;
+    public double accuracy;
     public JButton  startButton;
 
     public RandomWords(Counter countdown) {
@@ -50,6 +49,11 @@ public class RandomWords extends JPanel {
         wordField.setFont(new Font("Arial", Font.BOLD, 24));
 
 
+        StartButton();
+
+
+    }
+    public void StartButton(){
         //START BUTTON
         startButton = new JButton("Start");
         startButton.setBounds(20, 20, 100, 25);
@@ -59,12 +63,16 @@ public class RandomWords extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 startButton.setVisible(false);
                 // Disable the difficulty combo box
-                difficultyComboBox.disable();
+                difficultyComboBox.setEnabled(false);
                 countdown.start();
                 generateWord();
+
             }
         });
-
+    }
+    public void enableComponents(){
+        difficultyComboBox.setEnabled(true);
+        startButton.setVisible(true);
     }
     public enum Difficulty {
         Easy,
@@ -119,6 +127,7 @@ public class RandomWords extends JPanel {
 
                     // Update word count label
                     countdown.setWordCount(wordCount);
+                    countdown.setAccuracyCount(accuracy);
 
                     // Set difficulty
                     Difficulty difficulty = Difficulty.valueOf(difficultyComboBox.getSelectedItem().toString()); //Value need to be change to String
@@ -130,15 +139,12 @@ public class RandomWords extends JPanel {
             }
 
             //ACCURACY CALCULATION
-            DecimalFormat df = new DecimalFormat("#.##");
-            int correctCount = wordCount - wrongCount;
+//            int correctCount = wordCount - wrongCount;
 //            accuracy = ((double) correctCount /wordCount)* 100;
-            accuracy = ((float) correctPressed / totalPressed) * 100;
-            String formattedAccuracy = df.format(accuracy);
-//            wordCountLabel.setText("WPM: " + wordCount + "Accuracy: "+ accuracy +"%");
-//            wordCountLabel.setText("WPM: " + wordCount + "     Accuracy: " + (accuracy < 0 ? 0 : String.format("%.0f", accuracy)) + "%");
-            wordCountLabel.setText("WPM: " + wordCount + "     Accuracy: " + formattedAccuracy + "%");
+            accuracy = ((double) correctPressed /totalPressed)* 100;
+            wordCountLabel.setText("WPM: " + wordCount + "     Accuracy: " + (accuracy < 0 ? 0 : String.format("%.0f", accuracy)) + "%");
 
         }
     }
+
 }

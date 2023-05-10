@@ -7,7 +7,13 @@ public class Counter extends JPanel {
     private int countdown;
     private Timer timer;
     private int wordCount;
+    private double accuracyCount;
+    public   RandomWords randomWords;
+
+
     public Counter(){
+
+        this.randomWords = new RandomWords(this);
 
         setLayout(new BorderLayout());
 
@@ -17,7 +23,9 @@ public class Counter extends JPanel {
         countdownLabel.setForeground(Color.black);
         countdownLabel.setHorizontalAlignment((SwingConstants.CENTER));
         add(countdownLabel, BorderLayout.NORTH);
+
     }
+
     public void start(){
             countdown = DEFAULT_COUNTDOWN_SECONDS;
             countdownLabel.setText(Integer.toString(countdown));
@@ -34,23 +42,26 @@ public class Counter extends JPanel {
 
     }
     public void stop() {
-        RandomWords randomWords = new RandomWords(this);
         timer.stop();
-        int result = JOptionPane.showConfirmDialog(this, "Game over! WPM: " + wordCount + ". Would you like to play again?", "Game over", JOptionPane.YES_NO_OPTION);
+        int result = JOptionPane.showConfirmDialog(this, "Game over! WPM: " + wordCount + " Accuracy: " + (accuracyCount < 0 ? 0 : String.format("%.0f", accuracyCount)) + "%. Would you like to play again?", "Game over", JOptionPane.YES_NO_OPTION);
         if (result == JOptionPane.YES_OPTION) {
             reset();
-            randomWords.difficultyComboBox.setEnabled(true);
-            randomWords.startButton.setVisible(true);
+
         } else {
             System.exit(0);
         }
     }
     public void reset() {
-        countdownLabel.setText("60");
 
+        countdownLabel.setText("60");
+        randomWords.startButton.setVisible(true);
         start();
     }
+
     public void setWordCount(int count) {
         wordCount = count;
+    }
+    public  void setAccuracyCount(double count){
+        accuracyCount = count;
     }
 }
