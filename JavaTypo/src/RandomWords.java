@@ -6,9 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.Random;
 
 public class RandomWords extends JPanel {
@@ -19,11 +17,9 @@ public class RandomWords extends JPanel {
     private Difficulty difficulty;
     public int wrongCount;
     public double accuracy;
-
     public JButton  startButton;
     public JButton soundBtn;
     public static int wordCount;
-
     private boolean isSoundPlaying = false;
 
 
@@ -195,8 +191,6 @@ public class RandomWords extends JPanel {
 
             //ACCURACY CALCULATION
 
-//            int correctCount = wordCount - wrongCount;
-//            accuracy = ((double) correctCount /wordCount)* 100;
             accuracy = ((double) correctPressed /totalPressed)* 100;
             wordCountLabel.setText("WPM: " + wordCount + "     Accuracy: " + (accuracy < 0 ? 0 : String.format("%.0f", accuracy)) + "%");
 

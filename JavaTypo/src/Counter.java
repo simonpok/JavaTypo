@@ -13,7 +13,7 @@ public class Counter extends JPanel {
 
     public Counter(){
 
-        this.randomWords = new RandomWords(this);
+//        this.randomWords = new RandomWords(this);
 
         setLayout(new BorderLayout());
 
@@ -30,7 +30,7 @@ public class Counter extends JPanel {
             countdown = DEFAULT_COUNTDOWN_SECONDS;
             countdownLabel.setText(Integer.toString(countdown));
 
-            timer = new Timer(1000, e -> {  //150
+            timer = new Timer(100, e -> {  //150
                 int countdown = Integer.parseInt(countdownLabel.getText());
                 countdown--;
                 countdownLabel.setText(Integer.toString(countdown));
@@ -42,20 +42,20 @@ public class Counter extends JPanel {
 
     }
     public void stop() {
+        RandomWords randomWords = new RandomWords(this);
         timer.stop();
         int result = JOptionPane.showConfirmDialog(null, "Game over! WPM: " + wordCount + " Accuracy: " + (accuracyCount < 0 ? 0 : String.format("%.0f", accuracyCount)) + "%. Would you like to play again?", "Game over", JOptionPane.YES_NO_OPTION);
 
         if (result == JOptionPane.YES_OPTION) {
             reset();
-
+            randomWords.difficultyComboBox.setEnabled(true);
+            randomWords.startButton.setVisible(true);
         } else {
             System.exit(0);
         }
     }
     public void reset() {
         countdownLabel.setText("60");
-        randomWords.startButton.setVisible(true);
-
         start();
     }
 
