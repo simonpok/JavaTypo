@@ -1,14 +1,12 @@
 import javax.sound.sampled.*;
-import java.io.File;
 import java.io.IOException;
-import java.security.PrivateKey;
 import java.util.Objects;
 
 public class Sound {
     private static Clip backgroundClip;
     static {
         try {
-            AudioInputStream audioBackgroundInputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(Sound.class.getResource("backgroundMusic.wav")));
+            AudioInputStream audioBackgroundInputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(Sound.class.getResource("sound/backgroundMusic.wav")));
             backgroundClip = AudioSystem.getClip();
             backgroundClip.open(audioBackgroundInputStream);
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
@@ -16,7 +14,7 @@ public class Sound {
         }
     }
     public static void typeSound() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(Sound.class.getResource("keyboardClick.wav")));
+        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(Sound.class.getResource("sound/keyboardClick.wav")));
         Clip clip = AudioSystem.getClip();
         clip.open(audioInputStream);
         clip.start();
@@ -29,7 +27,4 @@ public class Sound {
             backgroundClip.stop();
         }
     }
-
-
-
 }
