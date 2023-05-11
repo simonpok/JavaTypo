@@ -24,6 +24,8 @@ public class Counter extends JPanel {
         countdownLabel.setHorizontalAlignment((SwingConstants.CENTER));
         add(countdownLabel, BorderLayout.NORTH);
 
+//        randomWords = new RandomWords(null);
+
     }
     /**
      * Starts the countdown.
@@ -53,9 +55,10 @@ public class Counter extends JPanel {
 
         if (result == JOptionPane.YES_OPTION) {
             reset();
+
+        } else {
 //            randomWords.difficultyComboBox.setEnabled(true);
 //            randomWords.startButton.setVisible(true);
-        } else {
             System.exit(0);
         }
     }
