@@ -14,7 +14,14 @@ public class Sound {
         }
     }
     public static void typeSound() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(Sound.class.getResource("sound/keyboardClick.wav")));
+        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(Sound.class.getResource("sound/keyboardType.wav")));
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioInputStream);
+        clip.start();
+    }
+
+    public static void wrongTypeSound() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(Sound.class.getResource("sound/wrongType.wav")));
         Clip clip = AudioSystem.getClip();
         clip.open(audioInputStream);
         clip.start();

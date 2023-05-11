@@ -3,7 +3,7 @@ import java.awt.*;
 
 public class Counter extends JPanel {
     private static final int DEFAULT_COUNTDOWN_SECONDS = 60; //The default countdown time in seconds.
-    private static final int DEFAULT_COUNTDOWN_SPEED = 1000; //The default countdown speed in milliseconds.
+    private static final int DEFAULT_COUNTDOWN_SPEED = 100; //The default countdown speed in milliseconds.
     private int wordCount; //The number of words typed.
     private int countdown; //The number of seconds remaining in the countdown.
     private double accuracyCount; //The accuracy of the player.
@@ -15,7 +15,7 @@ public class Counter extends JPanel {
     public Counter(){
         // Set the layout of the panel to BorderLayout.
         setLayout(new BorderLayout());
-
+        
         // Create the countdown label and set its font, foreground color, and horizontal alignment.
         countdownLabel = new JLabel(Integer.toString(DEFAULT_COUNTDOWN_SECONDS));
         Font countdownFont = new Font("Courier", Font.BOLD, 50);
@@ -28,6 +28,7 @@ public class Counter extends JPanel {
     /**
      * Starts the countdown.
      */
+    
     public void start(){
             countdown = DEFAULT_COUNTDOWN_SECONDS;
             countdownLabel.setText(Integer.toString(countdown));
@@ -53,8 +54,8 @@ public class Counter extends JPanel {
 
         if (result == JOptionPane.YES_OPTION) {
             reset();
-//            randomWords.difficultyComboBox.setEnabled(true);
-//            randomWords.startButton.setVisible(true);
+            randomWords.difficultyComboBox.setEnabled(true);
+            randomWords.startButton.setVisible(true);
         } else {
             System.exit(0);
         }
