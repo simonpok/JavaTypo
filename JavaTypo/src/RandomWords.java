@@ -75,7 +75,7 @@ public class RandomWords extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 startButton.setVisible(false);
                 // Disable the difficulty combo box
-                difficultyComboBox.setEnabled(false);
+                difficultyComboBox.setEnabled(true);
                 countdown.start();
                 generateWord();
             }
@@ -152,7 +152,7 @@ public class RandomWords extends JPanel {
         String[] words = null;
         switch (difficulty){
             case Easy:
-                words = new String[]{"apple", "banana", "cherry", "orange", "pear", "grape", "peach", "plum", "watermelon", "kiwi", "mango", "pineapple", "lemon", "lime", "strawberry", "blueberry", "raspberry", "blackberry", "pomegranate", "coconut", "avocado", "tomato", "potato", "carrot", "broccoli", "spinach", "lettuce", "cucumber", "pepper", "garlic", "onion", "celery", "cabbage", "cauliflower", "corn", "rice", "pasta", "bread", "butter", "cheese", "egg", "milk", "yogurt", "chicken", "beef", "pork", "fish", "shrimp", "lobster"};
+                words = new String[]{"apple", "banana", "cherry", "orange", "pear", "grape", "peach", "plum", "kiwi", "mango", "lemon", "lime", "banana","tomato", "potato", "carrot", "cat", "pepper", "tom", "onion", "celery", "cabbage", "corn", "rice", "pasta", "bread", "butter", "cheese", "egg", "milk", "yogurt", "chicken", "beef", "pork", "fish"};
                 break;
             case Medium:
                 words = new String[]{"computer", "television", "telephone", "newspaper", "dictionary","message","podcast","snapchat","facebook","instagram","youtube","furniture","restaurant","toilet","camera","keyboard","printer","magazine","basketball","football","volleyball","badminton","baseball","cricket","tennis","hockey","skiing","swimming","surfing","guitar","violin","piano","trumpet","trombone","clarinet","flute","drum","saxophone","accordion","car","bicycle","motorcycle","airplane","boat","train","bus","taxi","subway","helicopter","hospital","ambulance"};

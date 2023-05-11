@@ -3,7 +3,7 @@ import java.awt.*;
 
 public class Counter extends JPanel {
     private static final int DEFAULT_COUNTDOWN_SECONDS = 60; //The default countdown time in seconds.
-    private static final int DEFAULT_COUNTDOWN_SPEED = 100; //The default countdown speed in milliseconds.
+    private static final int DEFAULT_COUNTDOWN_SPEED = 1000; //The default countdown speed in milliseconds.
     private int wordCount; //The number of words typed.
     private int countdown; //The number of seconds remaining in the countdown.
     private double accuracyCount; //The accuracy of the player.
@@ -24,7 +24,7 @@ public class Counter extends JPanel {
         countdownLabel.setHorizontalAlignment((SwingConstants.CENTER));
         add(countdownLabel, BorderLayout.NORTH);
 
-//        randomWords = new RandomWords(null);
+        randomWords = new RandomWords(null);
 
     }
     /**
@@ -50,7 +50,7 @@ public class Counter extends JPanel {
      * Stops the countdown and displays the game over message.
      */
     public void stop() {
-        new RandomWords(this);
+//        new RandomWords(this);
         timer.stop();
         int result = JOptionPane.showConfirmDialog(null, "Game over! WPM: " + wordCount + " Accuracy: " + (accuracyCount < 0 ? 0 : String.format("%.0f", accuracyCount)) + "%. Would you like to play again?", "Game over", JOptionPane.YES_NO_OPTION);
 
@@ -60,6 +60,7 @@ public class Counter extends JPanel {
         } else {
 //            randomWords.difficultyComboBox.setEnabled(true);
 //            randomWords.startButton.setVisible(true);
+//            randomWords.enableComponents();
             System.exit(0);
         }
     }
