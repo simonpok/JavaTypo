@@ -14,7 +14,7 @@ public class SplashScreen {
         border.setTitleFont(new Font("Gotham light", Font.BOLD, 24));
         border.setTitleColor(Color.RED);
 
-        JLabel logoImg = new JLabel("by Sandip Shrestha & Kshitiz Adhikari", (new ImageIcon(getClass().getResource("graphics/splashLogo.png"))), JLabel.CENTER);
+        JLabel logoImg = new JLabel(/*"by Sandip Shrestha & Kshitiz Adhikari",*/ (new ImageIcon(getClass().getResource("graphics/splashLogo.png"))), JLabel.CENTER);
         logoImg.setFont(new Font("Gotham light", Font.PLAIN, 14));
         logoImg.setHorizontalTextPosition(JLabel.CENTER);
         logoImg.setVerticalTextPosition(JLabel.BOTTOM);
